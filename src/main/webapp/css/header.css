@@ -1,0 +1,129 @@
+@charset "UTF-8";
+/* Header Styles */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    animation: fadeInDown 1s ease-in-out;
+}
+
+@keyframes fadeInDown {
+from {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+.site-logo {
+    font-weight: bold;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #0b2c5e;
+    transition: transform 0.3s;
+}
+
+.site-logo:hover {
+    transform: scale(1.05);
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover {
+    color: #0b2c5e;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Button Styles used in header */
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn--outline {
+    background: transparent;
+    color: #0b2c5e;
+    border: 2px solid #0b2c5e;
+}
+
+.btn--outline:hover {
+    background: #0b2c5e;
+    color: white;
+}
+
+.btn--primary {
+    background-color: #0b2c5e;
+    color: white;
+    border: 2px solid #0b2c5e;
+}
+
+.btn--primary:hover {
+    background-color: #062144;
+    border-color: #062144;
+}
+
+/* Responsive styles for header */
+@media (max-width: 768px) {
+.site-header {
+    flex-direction: column;
+    padding: 20px;
+}
+
+.site-logo {
+    margin-bottom: 20px;
+}
+
+.main-nav ul {
+    margin: 15px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+}
+
+@media (max-width: 576px) {
+    .main-nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+}
+
+.header-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn {
+    margin: 5px 0;
+    }
+}
