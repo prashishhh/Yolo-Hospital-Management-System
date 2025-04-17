@@ -1,0 +1,15 @@
+# Eclipse
+.settings/
+.project
+.classpath
+bin/
+target/
+
+# OS
+.DS_Store
+
+# Maven
+*.log
+*.war
+*.ear
+
