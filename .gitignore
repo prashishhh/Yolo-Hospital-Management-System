@@ -1,7 +1,4 @@
 # Eclipse
-.settings/
-.project
-.classpath
 bin/
 target/
 
