@@ -1,19 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="jakarta.servlet.http.HttpSession"%>
-<%@ page import="jakarta.servlet.http.HttpServletRequest"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
-    String userRole = null;
-    String currentUser = null;
-
-    if (session != null) {
-        userRole = (String) session.getAttribute("userRole");
-        currentUser = (String) session.getAttribute("username");
-    }
-
-    pageContext.setAttribute("currentUser", currentUser);
-    pageContext.setAttribute("userRole", userRole);
-%>
+<c:set var="userRole" value="${sessionScope.userRole}" />
+<c:set var="currentUser" value="${sessionScope.username}" />
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
 
@@ -22,15 +11,20 @@
 
     <nav class="main-nav">
         <ul>
-            <% if ("Admin".equals(userRole)) { %>
-                <li><a href="${pageContext.request.contextPath}/admin/admin-dashboard">Overview</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/admin-doctors">Doctor</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/admin-patients">Patients</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/admin-appointment">Appointments</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/admin-rooms">Rooms</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/admin-payments">Payments</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/admin-addblog">Add Blog</a></li>
-            <% } else if ("Patient".equals(userRole)) { %>
+            <!-- Admin Menu -->
+            <c:if test="${userRole == 'Admin'}">
+                <li><a href="${pageContext.request.contextPath}/admin-dashboard">Overview</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin-doctor-list">Doctor</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin-patient-list">Patients</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin-appointment-list">Appointments</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin-treatment-list">Treatments</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin-room-list">Rooms</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin-payment-list">Payments</a></li>
+                <li><a href="${pageContext.request.contextPath}/add-blog">Add Blog</a></li>
+            </c:if>
+
+            <!-- Patient Menu -->
+            <c:if test="${userRole == 'Patient'}">
                 <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
                 <li><a href="${pageContext.request.contextPath}/appointments">Appointments</a></li>
@@ -38,22 +32,28 @@
                 <li><a href="${pageContext.request.contextPath}/payments">Payment History</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog">Blog</a></li>
                 <li><a href="${pageContext.request.contextPath}/about">About Us</a></li>
-            <% } else { %>
+            </c:if>
+		
+            <!-- Default (Guest or other roles) -->
+            <c:if test="${userRole != 'Admin' and userRole != 'Patient'}">
                 <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/about">About Us</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog">Blog</a></li>
-            <% } %>
+            </c:if>
         </ul>
     </nav>
-
+	<a href="${pageContext.request.contextPath}/book-appointment" class="btn btn--primary">Book Appointment</a>
     <div class="header-actions">
-        <% if (currentUser != null) { %>
-            <form action="${pageContext.request.contextPath}/logout" method="post">
-                <input type="submit" class="btn btn--outline" value="Logout" />
-            </form>
-        <% } else { %>
-            <a href="${pageContext.request.contextPath}/login" class="btn btn--outline">Login</a>
-            <a href="${pageContext.request.contextPath}/register" class="btn btn--primary">Register</a>
-        <% } %>
+        <c:choose>
+            <c:when test="${not empty currentUser}">
+                <form action="${pageContext.request.contextPath}/logout" method="post">
+                    <input type="submit" class="btn btn--outline" value="Logout" />
+                </form>
+            </c:when>
+            <c:otherwise>
+                <a href="${pageContext.request.contextPath}/login" class="btn btn--outline">Login</a>
+                <a href="${pageContext.request.contextPath}/register" class="btn btn--primary">Register</a>
+            </c:otherwise>
+        </c:choose>
     </div>
 </header>
