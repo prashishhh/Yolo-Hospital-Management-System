@@ -1,0 +1,227 @@
+@charset "UTF-8";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  background-color: #f4f8fc;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main Content Styles */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #1e40af;
+  margin-bottom: 15px;
+  position: relative;
+  padding-bottom: 10px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #93c5fd);
+  border-radius: 3px;
+  animation: expandWidth 0.8s ease-out 0.3s forwards;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* Treatment Cards */
+.treatment {
+  background: white;
+  border-left: 5px solid #3b82f6;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.treatment:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.treatment:nth-child(1) { animation-delay: 0.1s; }
+.treatment:nth-child(2) { animation-delay: 0.2s; }
+.treatment:nth-child(3) { animation-delay: 0.3s; }
+
+.treatment input[type="checkbox"] {
+  display: none;
+}
+
+.treatment label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.treatment label:hover {
+  background-color: #f8fafc;
+}
+
+.treatment label h3 {
+  font-size: 1.1rem;
+  color: #0f172a;
+  font-weight: 600;
+  flex: 1;
+  transition: color 0.3s ease;
+}
+
+.treatment label h3::before {
+  content: '+';
+  color: #3b82f6;
+  margin-right: 12px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.treatment input:checked + label h3 {
+  color: #1e40af;
+}
+
+.treatment input:checked + label h3::before {
+  content: '-';
+  transform: rotate(90deg);
+}
+
+.arrow {
+  font-size: 1.2rem;
+  color: #64748b;
+  transition: all 0.3s ease;
+}
+
+.treatment input:checked + label .arrow {
+  color: #1e40af;
+  transform: rotate(90deg);
+}
+
+.treatment-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 25px;
+  background-color: #f9fbff;
+  line-height: 1.6;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
+}
+
+.treatment input:checked ~ .treatment-content {
+  max-height: 500px;
+  padding: 15px 25px 25px;
+}
+
+.treatment-content p {
+  color: #334155;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.treatment input:checked ~ .treatment-content p {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+/* Doctor's Remarks Section */
+.doctor-remarks {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed #cbd5e1;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.treatment input:checked ~ .treatment-content .doctor-remarks {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.doctor-remarks h4 {
+  color: #1e40af;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.doctor-remarks h4::before {
+  content: '💬';
+  margin-right: 8px;
+  font-size: 1.1em;
+}
+
+.doctor-remarks p {
+  background-color: #f1f5f9;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border-left: 3px solid #3b82f6;
+  font-style: italic;
+  color: #475569;
+}
+
+footer {
+  background-color: #bcd9f7;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #1e293b;
+  margin-top: 40px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+to {
+  opacity: 1;
+  transform: translateY(0);
+}
+}
+
+@keyframes expandWidth {
+from { transform: scaleX(0); }
+to { transform: scaleX(1); }
+}
