@@ -1,0 +1,270 @@
+@charset "UTF-8";
+
+/* Reset box model and global font */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body base styles */
+body {
+  background-color: #f7f9fc;
+  color: #495057;
+}
+
+/* Base button styles */
+.btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Logout button */
+.logout {
+  background: transparent;
+  color: #1a1a1a;
+  font-weight: bold;
+}
+
+/* Hover state for logout button */
+.logout:hover {
+  background: #0b2c5e;
+  color: white;
+}
+
+/* Edit profile button */
+.edit-profile {
+  text-decoration: none;
+  background-color: #0b2c5e;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+/* Hover state for edit profile button */
+.edit-profile:hover {
+  background-color: #062144;
+}
+
+/* -------- Main Content -------- */
+
+/* Main tag padding */
+main {
+  padding: 1.5rem;
+}
+
+/* Header section of the page */
+.page-header {
+  background-color: #1E3A5F;
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Header title */
+.page-header h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+/* Breadcrumb navigation */
+.page-header .breadcrumb {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: #dee2e6;
+}
+
+/* Breadcrumb links */
+.page-header .breadcrumb a {
+  color: #e9ecef;
+  text-decoration: none;
+}
+
+/* -------- Profile Section -------- */
+
+/* Container holding sidebar and main profile content */
+.profile-container {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Sidebar styles */
+.profile-sidebar {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  height: fit-content;
+  flex: 1;
+  max-width: 300px;
+}
+
+/* Circular profile picture area */
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 3rem;
+  color: #adb5bd;
+  overflow: hidden;
+}
+
+/* Image inside the profile picture */
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Container for user name and ID */
+.profile-info {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* User's name */
+.profile-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 0.25rem;
+}
+
+/* User's ID text */
+.profile-id {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+/* Additional profile info rows (email, location, etc.) */
+.profile-info p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+/* Right side content section */
+.profile-content {
+  flex: 2;
+}
+
+/* Each section of profile content */
+.profile-section {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+/* Section headers */
+.section-title {
+  color: #1E3A5F;
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* Grid layout for info display */
+.info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 1rem;
+}
+
+/* Individual item in the info grid */
+.info-item {
+  padding: 0.5rem;
+  transition: background-color 0.3s;
+  border-radius: 0.25rem;
+  width: calc(33.333% - 1rem);
+  min-width: 200px;
+}
+
+/* Hover effect for info items */
+.info-item:hover {
+  background-color: #f8f9fa;
+}
+
+/* Label text (e.g., Email, Phone) */
+.info-label {
+  font-size: 0.75rem;
+  color: #6c757d;
+  margin-bottom: 0.25rem;
+}
+
+/* Actual info value (e.g., user@example.com) */
+.info-value {
+  font-size: 0.875rem;
+  color: #212529;
+  font-weight: 500;
+}
+
+/* -------- Responsive Design -------- */
+
+/* Tablet view adjustments */
+@media (max-width: 992px) {
+  .profile-container {
+    flex-direction: column;
+  }
+
+  .profile-sidebar {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Medium screen (768px) */
+@media (max-width: 768px) {
+  .admin-header {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .admin-header nav ul {
+    margin: 15px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .info-item {
+    width: calc(50% - 1rem);
+  }
+}
+
+/* Small screen (576px) */
+@media (max-width: 576px) {
+  .admin-header {
+    padding: 10px;
+  }
+
+  .admin-header nav ul {
+    gap: 15px;
+  }
+
+  .info-item {
+    width: 100%;
+  }
+}
