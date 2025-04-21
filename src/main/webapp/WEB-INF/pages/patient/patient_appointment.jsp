@@ -11,6 +11,9 @@
         href="${pageContext.request.contextPath}/css/patient_appointment.css" />
 </head>
 <body>
+
+	<jsp:include page="/WEB-INF/pages/header.jsp" />
+	
     <div class="content">
     
         <!-- Header section for the appointments list -->
