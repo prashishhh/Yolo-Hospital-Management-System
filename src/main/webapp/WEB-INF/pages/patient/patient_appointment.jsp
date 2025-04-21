@@ -5,28 +5,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Patient Appointment List</title>
-    
-    <!-- Link to external CSS for styling the appointment list -->
     <link rel="stylesheet" type="text/css"
         href="${pageContext.request.contextPath}/css/patient_appointment.css" />
 </head>
 <body>
-
-	<jsp:include page="/WEB-INF/pages/header.jsp" />
-	
-    <div class="content">
+    <jsp:include page="/WEB-INF/pages/header.jsp" />
     
-        <!-- Header section for the appointments list -->
+    <div class="content">
         <div class="header-container">
             <h2 class="list-header">Appointments List</h2>
+            <a href="${pageContext.request.contextPath}/book-appointment" class="add-appointment-btn">+ Book Appointment</a>
         </div>
         
-        <!-- Search bar to filter appointments -->
         <div class="search-control">
             <input type="text" placeholder="Search appointments...">
         </div>
         
-        <!-- Appointment list table -->
         <table>
             <thead>
                 <tr>
@@ -39,7 +33,6 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Sample row: Booked appointment with Dr. Rajesh Adhikari -->
                 <tr>
                     <td>1</td>
                     <td>Dr. Rajesh Adhikari</td>
@@ -49,7 +42,6 @@
                     <td><span class="status booked">Booked</span></td>
                 </tr>
                 
-                <!-- Completed appointment with Dr. Sabina Karki -->
                 <tr>
                     <td>2</td>
                     <td>Dr. Sabina Karki</td>
@@ -59,7 +51,6 @@
                     <td><span class="status completed">Completed</span></td>
                 </tr>
                 
-                <!-- Another booked appointment with Dr. Nabin Shrestha -->
                 <tr>
                     <td>3</td>
                     <td>Dr. Nabin Shrestha</td>
@@ -69,7 +60,6 @@
                     <td><span class="status booked">Booked</span></td>
                 </tr>
                 
-                <!-- Not booked appointment -->
                 <tr>
                     <td>4</td>
                     <td>Dr. Rajesh Adhikari</td>
@@ -79,7 +69,6 @@
                     <td><span class="status not-booked">Not Booked</span></td>
                 </tr>
                 
-                <!-- Booked appointment for Dr. Sabina Karki -->
                 <tr>
                     <td>5</td>
                     <td>Dr. Sabina Karki</td>
@@ -89,7 +78,6 @@
                     <td><span class="status booked">Booked</span></td>
                 </tr>
                 
-                <!-- Completed appointment with Dr. Nabin Shrestha -->
                 <tr>
                     <td>6</td>
                     <td>Dr. Nabin Shrestha</td>
@@ -99,7 +87,6 @@
                     <td><span class="status completed">Completed</span></td>
                 </tr>
                 
-                <!-- Another booked appointment with Dr. Rajesh Adhikari -->
                 <tr>
                     <td>7</td>
                     <td>Dr. Rajesh Adhikari</td>
