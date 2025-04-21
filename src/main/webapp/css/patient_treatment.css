@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f7f9fc;
+    color: #1a1a1a;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.main-content {
+    width: 100%;
+}
+
+/* Header container styling */
+.header-container {
+	text-align: left;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.list-header {
+	text-align: left;
+    color: #192C3D;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Search control styling */
+.search-control {
+    margin-bottom: 20px;
+}
+
+.search-control input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    width: 300px;
+}
+
+/* Treatment table styling */
+.treatment-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.treatment-table th {
+    background-color: #B2D4EC;
+    color: #192C3D;
+    text-align: left;
+    padding: 12px 15px;
+    font-weight: 600;
+    border-bottom: 1px solid #ddd;
+}
+
+.treatment-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.treatment-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Status styling (if needed in the future) */
+.status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.status.active {
+    background-color: #ffeeba;
+    color: #856404;
+}
+
+.status.completed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status.pending {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Button styling */
+.add-treatment-btn {
+    text-decoration: none;
+    background-color: #3A74A1;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.add-treatment-btn:hover {
+    background-color: #2E5D80;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .search-control input {
+        width: 100%;
+    }
+    
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
