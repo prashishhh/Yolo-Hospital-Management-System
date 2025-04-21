@@ -1,0 +1,273 @@
+@charset "UTF-8";
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Body Styling */
+body {
+  background-color: #8FB8D8;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Button Styling */
+.btn {
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.register {
+  background: #e6f0ff;
+  color: #4A8BBE;
+}
+
+.register:hover {
+  background: #d5e6ff;
+}
+
+
+/* Time Slot Dropdown Specific Styling */
+#appointment-time {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234A8BBE' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+#appointment-time:focus {
+  border-color: #4A8BBE;
+  box-shadow: 0 0 0 3px rgba(74, 139, 190, 0.2);
+}
+
+#appointment-time option {
+  padding: 12px;
+  font-size: 16px;
+}
+
+/* Hover effect */
+#appointment-time:hover {
+  border-color: #4A8BBE;
+}
+
+/* Styling the dropdown when opened */
+#appointment-time:focus-visible {
+  outline: none;
+}
+
+/* Container Styling */
+.container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+/* Booking Container Styling */
+.booking-container {
+  background-color: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+}
+
+/* Doctor Card Styling */
+.doctor-card {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 40px;
+}
+
+/* Doctor Image Styling */
+.doctor-image-container {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #e6f0ff;
+  box-shadow: 0 4px 12px rgba(74, 139, 190, 0.15);
+  background-color: #f9fafc;
+  position: relative;
+}
+
+.doctor-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Doctor Information */
+.doctor-info {
+  flex: 1;
+}
+
+.doctor-info h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #0b2c5e;
+}
+
+.doctor-info p {
+  color: #666;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+/* Specialty Badge Styling */
+.specialty {
+  background-color: #e6f0ff;
+  color: #4A8BBE;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 15px;
+  display: inline-block;
+  font-weight: 500;
+}
+
+/* Appointment Form Styling */
+.appointment-form {
+  margin-top: 40px;
+}
+
+/* Form Row and Group Layout */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #555;
+  font-size: 16px;
+}
+
+/* Form Control (input, select) Styling */
+.form-control {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #e0e4e8;
+  border-radius: 12px;
+  font-size: 16px;
+  background-color: #f9fafc;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #4A8BBE;
+  box-shadow: 0 0 0 3px rgba(74, 139, 190, 0.1);
+  background-color: white;
+}
+
+
+
+/* Fee Container Styling */
+.fee-container {
+  background-color: #f9fafc;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  margin: 30px auto;
+  max-width: 500px;
+  border: 1px solid #e6f0ff;
+}
+
+.fee-label {
+  font-size: 18px;
+  color: #555;
+}
+
+.fee-amount {
+  font-size: 32px;
+  font-weight: 700;
+  color: #4A8BBE;
+  margin-left: 10px;
+}
+
+/* Booking Button Styling */
+.booking-button {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 18px;
+  background-color: #062144;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.booking-button:hover {
+  background-color: #5480AF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(98, 144, 191, 0.25);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .admin-header {
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .admin-header nav {
+    width: 100%;
+  }
+
+  .admin-header nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .doctor-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .container {
+    margin: 30px auto;
+  }
+
+  .booking-container {
+    padding: 25px;
+  }
+}
