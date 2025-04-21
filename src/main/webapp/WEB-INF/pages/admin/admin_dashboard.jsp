@@ -102,7 +102,7 @@
           </div>
         </div>
         
-        <div class="card">
+         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Doctors</h3>
             <a href="#" class="card-link">View All</a>
@@ -111,11 +111,59 @@
             <ul class="doctor-list">
               <li class="doctor-item">
                 <div class="doctor-avatar">
-                  <img src="d1.jpg.avif" alt="Doctor">
+                  <img src= "${pageContext.request.contextPath}/resources/images/doctors/prashsihsihss.jpg" alt="Doctor Profile">
                 </div>
                 <div class="doctor-info">
                   <div class="doctor-name">Dr. Brooklyn Simmons</div>
                   <div class="doctor-specialty">Radiation</div>
+                </div>
+                <div class="doctor-actions">
+                  <button class="btn btn-icon">⋮</button>
+                </div>
+              </li>
+              <li class="doctor-item">
+                <div class="doctor-avatar">
+                  <img src= "${pageContext.request.contextPath}/resources/images/doctors/prashsihsihss.jpg" alt="Doctor Profile">
+                </div>
+                <div class="doctor-info">
+                  <div class="doctor-name">Dr. Savannah Nguyen</div>
+                  <div class="doctor-specialty">Dialysis</div>
+                </div>
+                <div class="doctor-actions">
+                  <button class="btn btn-icon">⋮</button>
+                </div>
+              </li>
+              <li class="doctor-item">
+                <div class="doctor-avatar">
+                  <img src= "${pageContext.request.contextPath}/resources/images/doctors/prashsihsihss.jpg" alt="Doctor Profile">
+                </div>
+                <div class="doctor-info">
+                  <div class="doctor-name">Dr. Courtney Henry</div>
+                  <div class="doctor-specialty">Hormone</div>
+                </div>
+                <div class="doctor-actions">
+                  <button class="btn btn-icon">⋮</button>
+                </div>
+              </li>
+              <li class="doctor-item">
+                <div class="doctor-avatar">
+                  <img src= "${pageContext.request.contextPath}/resources/images/doctors/prashsihsihss.jpg" alt="Doctor Profile">
+                </div>
+                <div class="doctor-info">
+                  <div class="doctor-name">Dr. Kathryn Murphy</div>
+                  <div class="doctor-specialty">Radiation</div>
+                </div>
+                <div class="doctor-actions">
+                  <button class="btn btn-icon">⋮</button>
+                </div>
+              </li>
+              <li class="doctor-item">
+                <div class="doctor-avatar">
+                  <img src= "${pageContext.request.contextPath}/resources/images/doctors/prashsihsihss.jpg" alt="Doctor Profile">
+                </div>
+                <div class="doctor-info">
+                  <div class="doctor-name">Dr. John Doe</div>
+                  <div class="doctor-specialty">Cardiology</div>
                 </div>
                 <div class="doctor-actions">
                   <button class="btn btn-icon">⋮</button>
