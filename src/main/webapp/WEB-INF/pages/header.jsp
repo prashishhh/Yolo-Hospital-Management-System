@@ -25,27 +25,32 @@
 
             <!-- Patient Menu -->
             <c:if test="${userRole == 'Patient'}">
-                <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
-                <li><a href="${pageContext.request.contextPath}/appointments">Appointments</a></li>
-                <li><a href="${pageContext.request.contextPath}/treatments">Treatments</a></li>
-                <li><a href="${pageContext.request.contextPath}/payments">Payment History</a></li>
+            	<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
+            	<li><a href="${pageContext.request.contextPath}/our-doctors">Our Doctors</a></li>
+                <li><a href="${pageContext.request.contextPath}/patient-dashboard">Overview</a></li>
+                <li><a href="${pageContext.request.contextPath}/patient-profile">Profile</a></li>
+                <li><a href="${pageContext.request.contextPath}/patient-appointment">Appointments</a></li>
+                <li><a href="${pageContext.request.contextPath}/patient-treatment">Treatments</a></li>
+                <li><a href="${pageContext.request.contextPath}/patient-payment-history">Payment History</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog">Blog</a></li>
-                <li><a href="${pageContext.request.contextPath}/about">About Us</a></li>
+                <li><a href="${pageContext.request.contextPath}/about-us">About Us</a></li>
             </c:if>
-		
+
             <!-- Default (Guest or other roles) -->
             <c:if test="${userRole != 'Admin' and userRole != 'Patient'}">
                 <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/about">About Us</a></li>
+                <li><a href="${pageContext.request.contextPath}/about-us">About Us</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog">Blog</a></li>
             </c:if>
         </ul>
     </nav>
-	<a href="${pageContext.request.contextPath}/book-appointment" class="btn btn--primary">Book Appointment</a>
+
     <div class="header-actions">
         <c:choose>
             <c:when test="${not empty currentUser}">
+            	<c:if test="${userRole == 'Patient'}">
+                	<a href="${pageContext.request.contextPath}/book-appointment" class="btn btn--primary">Book Appointment</a>
+            	</c:if>
                 <form action="${pageContext.request.contextPath}/logout" method="post">
                     <input type="submit" class="btn btn--outline" value="Logout" />
                 </form>
