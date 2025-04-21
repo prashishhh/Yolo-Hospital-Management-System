@@ -16,7 +16,7 @@
     <div class="profile-container"> <%-- Container for profile layout --%>
       <div class="profile-sidebar"> <%-- Sidebar for profile image and basic info --%>
         <div class="profile-picture">
-          <i class="fas fa-user"></i> <%-- Placeholder icon for user picture --%>
+          <i class="fas fa-user"><img src= "${pageContext.request.contextPath}/resources/images/patient/pp1.jpg" alt="Healthcare professionals"></i> <%-- Placeholder icon for user picture --%>
         </div>
         <div class="profile-info"> <%-- Basic profile information --%>
           <h3 class="profile-name">Katyani Bajgain</h3>
