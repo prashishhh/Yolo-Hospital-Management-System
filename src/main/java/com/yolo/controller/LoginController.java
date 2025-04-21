@@ -63,13 +63,14 @@ public class LoginController extends HttpServlet {
 		
 		if (loginStatus != null && loginStatus) {
 			SessionUtil.setAttribute(request, "username", username);
-			if (username.equals("admin")) {
-				SessionUtil.setAttribute(request, "userRole", "Admin");
-				CookieUtil.addCookie(response, "role", "Admin", 5 * 30);
-				response.sendRedirect(request.getContextPath() + "/admin/admin-dashboard"); // Redirect to /admin dashboard
+			String userRole = userModel.getUserRole();
+			
+			SessionUtil.setAttribute(request, "userRole", userRole);
+			CookieUtil.addCookie(response, "role", userRole, 5 * 30);
+			
+			if (userRole.equals("Admin")) {
+				response.sendRedirect(request.getContextPath() + "/admin-dashboard"); // Redirect to /admin dashboard
 			} else {
-				SessionUtil.setAttribute(request, "userRole", "Patient");
-				CookieUtil.addCookie(response, "role", "Patient", 5 * 30);
 				response.sendRedirect(request.getContextPath() + "/home"); // Redirect to /home
 			}
 		} else {

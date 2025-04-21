@@ -43,7 +43,7 @@ public class LoginService {
 	        return null;
 	    }
 
-	    String query = "SELECT username, password FROM User WHERE username = ?";
+	    String query = "SELECT username, password, userRole FROM User WHERE username = ?";
 	    try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
 	        stmt.setString(1, userModel.getUserName());
 	        ResultSet result = stmt.executeQuery();
@@ -71,8 +71,14 @@ public class LoginService {
 	private boolean validatePassword(ResultSet result, UserModel userModel) throws SQLException {
 	    String dbUsername = result.getString("username");
 	    String dbPassword = result.getString("password");
+	    String dbRole = result.getString("userRole");
 	    
-	    return dbUsername.equals(userModel.getUserName())
-				&& PasswordUtil.decrypt(dbPassword, dbUsername).equals(userModel.getPassword());
+	    if (dbUsername.equals(userModel.getUserName()) &&
+	            PasswordUtil.decrypt(dbPassword, dbUsername).equals(userModel.getPassword())) {
+	            userModel.setUserRole(dbRole); // set the role in UserModel
+	            return true;
+	        }
+
+	        return false;
 	}
 }
