@@ -6,50 +6,42 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import com.yolo.service.OurDoctorsService;
 
 /**
- * Servlet implementation class OurDoctorsController.
- * This controller is responsible for handling requests to display the "Our Doctors" page.
+ * Servlet implementation class OurDoctorsController
+ * This controller handles requests to display the "Our Doctors" page
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/our-doctors" })
 public class OurDoctorsController extends HttpServlet {
-    // Serial version UID for version control of the serialized class
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+    private OurDoctorsService ourDoctorsService;
+
     /**
-     * Constructor for OurDoctorsController.
-     * Initializes the servlet. The constructor is called when an instance of the servlet is created.
+     * Constructor initializing the service
      */
     public OurDoctorsController() {
-        super();
-        // Constructor code can be added if needed in the future
+        this.ourDoctorsService = new OurDoctorsService();
     }
 
     /**
-     * Handles GET requests to display the "Our Doctors" page.
-     * Forwards the request to the our_doctors.jsp page, where the list of doctors is displayed.
-     *
-     * @param request  HttpServletRequest object
-     * @param response HttpServletResponse object
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * Handles GET requests to display the list of doctors
      */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Forwarding the request to the our_doctors.jsp page
-		request.getRequestDispatcher("/WEB-INF/pages/our_doctors.jsp").forward(request, response);
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get the search query from the request
+        String searchQuery = request.getParameter("search");
+
+        // Get doctor profiles and set as request attribute
+        request.setAttribute("doctorList", ourDoctorsService.getDoctorList(searchQuery));
+
+        // Forward to the JSP
+        request.getRequestDispatcher("/WEB-INF/pages/our_doctors.jsp").forward(request, response);
+    }
 
     /**
-     * Handles POST requests to forward to the GET method.
-     * Since the "Our Doctors" page does not need to process POST requests, it simply forwards the request to the doGet method.
-     *
-     * @param request  HttpServletRequest object
-     * @param response HttpServletResponse object
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * Handles POST requests by delegating to doGet
      */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Forwarding POST requests to the GET method as no POST processing is needed
-		doGet(request, response);
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }
