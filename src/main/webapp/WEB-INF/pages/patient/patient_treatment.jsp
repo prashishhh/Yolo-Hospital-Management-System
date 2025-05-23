@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +15,17 @@
     <div class="container">
         <div class="main-content">
             <div class="header-container">
-                <h2 class="list-header">My Treatments</h2>
+                <h2 class="list-header">Treatment List</h2>
             </div>
+            
+            <!-- Search form -->
+            <div class="search-control">
+                <form action="${pageContext.request.contextPath}/patient-treatment" method="get">
+                    <input type="text" name="search" placeholder="Search treatments..." value="${param.search}">
+                    <button type="submit"><img class="search-icon" src="${pageContext.request.contextPath}/resources/images/searchbar.png" alt="search bar"></button>
+                </form>
+            </div>
+            
             
             <table class="treatment-table">
                 <thead>
@@ -27,18 +37,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Hypertension Management</td>
-                        <td>Dr. Girish Raj Thapa</td>
-                        <td>Monitor blood pressure weekly, maintain a low-sodium diet, and review in 1 month for medication adjustment.</td>
-                        <td>Patient advised on lifestyle changes and medication adherence. Follow-up scheduled in 4 weeks.</td>
-                    </tr>
-                    <tr>
-                        <td>Post-Appendectomy Care</td>
-                        <td>Dr. Prashish Sapkota</td>
-                        <td>Monitor wound, take meds as prescribed, avoid heavy lifting, follow up in 1 week.</td>
-                        <td>Patient stable. Wound clean. Advised on care and follow-up.</td>
-                    </tr>
+                    <c:forEach var="userTreatment" items="${treatmentDetailsList}">
+                        <tr>
+                            <td>${userTreatment.appointment.treatment.treatmentName}</td>
+                            <td>Dr. ${userTreatment.appointment.doctor.doctorFirstName} ${userTreatment.appointment.doctor.doctorLastName}</td>
+                            <td>${userTreatment.appointment.treatment.treatmentPlan}</td>
+                            <td>${userTreatment.appointment.treatment.treatmentRemark}</td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>

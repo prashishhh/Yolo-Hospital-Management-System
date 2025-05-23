@@ -8,6 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import com.yolo.service.patient.PatientTreatmentService;
+import com.yolo.util.SessionUtil;
+
 /**
  * PatientTreatmentController is responsible for handling requests 
  * related to a patient's treatment view. 
@@ -17,12 +20,14 @@ import java.io.IOException;
 public class PatientTreatmentController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	
+	private PatientTreatmentService patientTreatmentService;
 
 	/**
 	 * Default constructor for PatientTreatmentController.
 	 */
 	public PatientTreatmentController() {
-		super();
+		this.patientTreatmentService = new PatientTreatmentService();
 	}
 	/**
 	 * Handles GET requests to display the patient treatment page.
@@ -34,6 +39,14 @@ public class PatientTreatmentController extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Integer userID = (Integer) SessionUtil.getAttribute(request, "userID");
+		// Get the search query from the request
+        String searchQuery = request.getParameter("search");
+        
+        // Get treatment details for the logged-in patient
+        request.setAttribute("treatmentDetailsList", patientTreatmentService.getPatientTreatmentDetails(userID, searchQuery));
+        
 		request.getRequestDispatcher("/WEB-INF/pages/patient/patient_treatment.jsp").forward(request, response);
 	}
 
