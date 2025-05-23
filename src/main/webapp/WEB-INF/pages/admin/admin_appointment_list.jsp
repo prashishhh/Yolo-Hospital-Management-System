@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +19,13 @@
             <a href="${pageContext.request.contextPath}/create-appointment" class="add-appointment-btn">+ Create Appointment</a>
         </div>
         
-        <div class="search-control">
-            <input type="text" placeholder="Search appointments...">
-        </div>
+        <!-- Search form -->
+            <div class="search-control">
+                <form action="${pageContext.request.contextPath}/admin-appointment-list" method="get">
+                    <input type="text" name="search" placeholder="Search appointments...." value="${param.search}">
+                    <button type="submit"><img class="search-icon" src="${pageContext.request.contextPath}/resources/images/searchbar.png" alt="search bar"></button>
+                </form>
+            </div>
         <table>
             <thead>
                 <tr>
@@ -33,69 +39,21 @@
                 </tr>
             </thead>
             <tbody>
+            	<c:forEach var="userAppointment" items="${appointmentDetailsList}">
                 <tr>
-                    <td>1</td>
-                    <td>Aarati Sharma</td>
-                    <td>Dr. Rajesh Adhikari</td>
-                    <td>15-Apr-2025</td>
-                    <td>10:00 AM - 10:30 AM</td>
-                    <td>Room 101</td>
-                    <td><span class="status booked">Booked</span></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Bijay Thapa</td>
-                    <td>Dr. Sabina Karki</td>
-                    <td>15-Apr-2025</td>
-                    <td>11:00 AM - 11:30 AM</td>
-                    <td>Room 202</td>
-                    <td><span class="status completed">Completed</span></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Deepak Poudel</td>
-                    <td>Dr. Nabin Shrestha</td>
-                    <td>15-Apr-2025</td>
-                    <td>2:00 PM - 2:45 PM</td>
-                    <td>Room 105</td>
-                    <td><span class="status booked">Booked</span></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td></td>
-                    <td>Dr. Rajesh Adhikari</td>
-                    <td>16-Apr-2025</td>
-                    <td>9:15 AM - 9:45 AM</td>
-                    <td>Room 101</td>
-                    <td><span class="status not-booked">Not Booked</span></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Prakash Gurung</td>
-                    <td>Dr. Sabina Karki</td>
-                    <td>16-Apr-2025</td>
-                    <td>1:30 PM - 2:00 PM</td>
-                    <td>Room 204</td>
-                    <td><span class="status booked">Booked</span></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Manisha Rai</td>
-                    <td>Dr. Nabin Shrestha</td>
-                    <td>17-Apr-2025</td>
-                    <td>11:30 AM - 12:00 PM</td>
-                    <td>Room 103</td>
-                    <td><span class="status completed">Completed</span></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Ram Bahadur KC</td>
-                    <td>Dr. Rajesh Adhikari</td>
-                    <td>17-Apr-2025</td>
-                    <td>3:00 PM - 3:30 PM</td>
-                    <td>Room 303</td>
-                    <td><span class="status booked">Booked</span></td>
-                </tr>
+                	<td>${userAppointment.appointment.appointmentID}</td>
+                    <td>${userAppointment.user.firstName} ${userAppointment.user.lastName}</td>
+                    <td>Dr. ${userAppointment.appointment.doctor.doctorFirstName} ${userAppointment.appointment.doctor.doctorLastName}</td>
+                    <td>${userAppointment.appointment.appointmentDate}</td>
+                    <td>${userAppointment.appointment.appointmentStartTime} - ${userAppointment.appointment.appointmentEndTime}</td>
+                    <td>${userAppointment.appointment.room.roomName} <br/> ${userAppointment.appointment.room.roomType}</td>
+                    <td>
+                    	<div class="badge ${userAppointment.appointment.appointmentStatus == 'Confirmed' ? 'badge-success' : 'badge-warning'}">
+                		${userAppointment.appointment.appointmentStatus}
+           			 	</div>	
+           			 </td>
+                </tr> 
+                </c:forEach>               
             </tbody>
         </table>
     </div>
