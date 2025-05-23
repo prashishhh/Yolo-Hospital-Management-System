@@ -14,7 +14,6 @@ public class DoctorModel {
 	private String doctorDistrict;
 	private String doctorMunicipality;
 	private String doctorWardNo;
-	private String userName;
 	private String doctorQualification;
 	private String doctorExperience;
 	private String doctorSpecialization;
@@ -26,7 +25,7 @@ public class DoctorModel {
 
 	public DoctorModel(int doctorID, String doctorFirstName, String doctorLastName, LocalDate doctorDateOfBirth,
 			String doctorGender, String doctorPhoneNumber, String doctorEmail, String doctorCity, String doctorDistrict,
-			String doctorMunicipality, String doctorWardNo, String userName, String doctorQualification,
+			String doctorMunicipality, String doctorWardNo, String doctorQualification,
 			String doctorExperience, String doctorSpecialization, String imagePath) {
 		super();
 		this.doctorID = doctorID;
@@ -40,7 +39,6 @@ public class DoctorModel {
 		this.doctorDistrict = doctorDistrict;
 		this.doctorMunicipality = doctorMunicipality;
 		this.doctorWardNo = doctorWardNo;
-		this.userName = userName;
 		this.doctorQualification = doctorQualification;
 		this.doctorExperience = doctorExperience;
 		this.doctorSpecialization = doctorSpecialization;
@@ -49,7 +47,7 @@ public class DoctorModel {
 
 	public DoctorModel(String doctorFirstName, String doctorLastName, LocalDate doctorDateOfBirth, String doctorGender,
 			String doctorPhoneNumber, String doctorEmail, String doctorCity, String doctorDistrict,
-			String doctorMunicipality, String doctorWardNo, String userName, String doctorQualification,
+			String doctorMunicipality, String doctorWardNo,String doctorQualification,
 			String doctorExperience, String doctorSpecialization, String imagePath) {
 		super();
 		this.doctorFirstName = doctorFirstName;
@@ -62,11 +60,74 @@ public class DoctorModel {
 		this.doctorDistrict = doctorDistrict;
 		this.doctorMunicipality = doctorMunicipality;
 		this.doctorWardNo = doctorWardNo;
-		this.userName = userName;
 		this.doctorQualification = doctorQualification;
 		this.doctorExperience = doctorExperience;
 		this.doctorSpecialization = doctorSpecialization;
 		this.imagePath = imagePath;
+	}
+	
+	
+
+	public DoctorModel(String doctorFirstName, String doctorLastName, String doctorSpecialization,	String imagePath) {
+		super();
+		this.doctorFirstName = doctorFirstName;
+		this.doctorLastName = doctorLastName;
+		this.doctorSpecialization = doctorSpecialization;
+		this.imagePath = imagePath;
+	}
+	
+	public DoctorModel(int doctorID, String doctorFirstName, String doctorLastName, String doctorSpecialization,	String imagePath) {
+		this.doctorID = doctorID;
+		this.doctorFirstName = doctorFirstName;
+		this.doctorLastName = doctorLastName;
+		this.doctorSpecialization = doctorSpecialization;
+		this.imagePath = imagePath;
+	}
+	
+	
+	
+	public DoctorModel (String doctorFirstName, String doctorLastName, String doctorQualification,
+			String doctorSpecialization, String imagePath, int doctorID) {
+		super();
+		this.doctorID = doctorID;
+		this.doctorFirstName = doctorFirstName;
+		this.doctorLastName = doctorLastName;
+		this.doctorQualification = doctorQualification;
+		this.doctorSpecialization = doctorSpecialization;
+		this.imagePath = imagePath;
+	}
+	
+
+	public DoctorModel (String doctorFirstName,  int doctorID, String doctorLastName, String doctorQualification,
+			String doctorSpecialization, String doctorExperience, String imagePath) {
+		super();
+		this.doctorID = doctorID;
+		this.doctorFirstName = doctorFirstName;
+		this.doctorLastName = doctorLastName;
+		this.doctorQualification = doctorQualification;
+		this.doctorSpecialization = doctorSpecialization;
+		this.doctorExperience = doctorExperience;
+		this.imagePath = imagePath;
+	}
+
+	public DoctorModel(int doctorID, String doctorFirstName, String doctorLastName,
+			String doctorExperience,  String doctorPhoneNumber, String doctorSpecialization) {
+		super();
+		this.doctorID = doctorID;
+		this.doctorFirstName = doctorFirstName;
+		this.doctorLastName = doctorLastName;
+		this.doctorPhoneNumber = doctorPhoneNumber;
+		this.doctorExperience = doctorExperience;
+		this.doctorSpecialization = doctorSpecialization;
+	}
+	
+	
+
+	public DoctorModel(int doctorID, String doctorFirstName, String doctorLastName) {
+		super();
+		this.doctorID = doctorID;
+		this.doctorFirstName = doctorFirstName;
+		this.doctorLastName = doctorLastName;
 	}
 
 	public int getDoctorID() {
@@ -155,14 +216,6 @@ public class DoctorModel {
 
 	public void setDoctorWardNo(String doctorWardNo) {
 		this.doctorWardNo = doctorWardNo;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public String getDoctorQualification() {

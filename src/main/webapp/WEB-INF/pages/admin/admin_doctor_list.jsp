@@ -1,126 +1,68 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Doctor List</title>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/admin_doctor_list.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/admin_doctor_list.css" />
 </head>
 <body>
-	<jsp:include page="/WEB-INF/pages/header.jsp" />
-	
-	<main>
-		<div class="content">
+    <jsp:include page="/WEB-INF/pages/header.jsp" />
+    <main>
+        <div class="content">
             <div class="header-container">
                 <h2 class="list-header">Doctors List</h2>
                 <a href="${pageContext.request.contextPath}/add-doctor" class="add-doctor-btn">+ Add Doctor</a>
             </div>
-            
+            <c:if test="${not empty error}">
+                <p class="error-message">${error}</p>
+            </c:if>
+            <c:if test="${not empty success}">
+                <p class="success-message">${success}</p>
+            </c:if>
             <div class="search-control">
-                <input type="text" placeholder="Search doctors...">
+                <form action="${pageContext.request.contextPath}/admin-doctor-list" method="get">
+                    <input type="text" name="search" placeholder="Search doctors..." value="${param.search}">
+                    <button type="submit"><img class="search-icon" src="${pageContext.request.contextPath}/resources/images/searchbar.png" alt="search bar"></button>
+                </form>
             </div>
             <table>
                 <thead>
                     <tr>
                         <th>Doctor ID</th>
-                        <th>Doctor Name </th>
+                        <th>Doctor Name</th>
                         <th>Experience (Years)</th>
                         <th>Phone</th>
                         <th>Specialization</th>
-                        <th>Appointments</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Manoj Kumar</td>
-                        <td>10</td>
-                        <td>333-444-7777</td>
-                        <td>Dental</td>
-                        <td>24</td>
-                        <td class="actions">
-                            <button class="btn-edit">Edit</button>
-                            <button class="btn-delete">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Riya</td>
-                        <td>6</td>
-                        <td>3423-232-987</td>
-                        <td>Ortho</td>
-                        <td>18</td>
-                        <td class="actions">
-                            <button class="btn-edit">Edit</button>
-                            <button class="btn-delete">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Paul</td>
-                        <td>15</td>
-                        <td>3423-132-987</td>
-                        <td>General Physician</td>
-                        <td>32</td>
-                        <td class="actions">
-                            <button class="btn-edit">Edit</button>
-                            <button class="btn-delete">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Manoj Kumar</td>
-                        <td>20</td>
-                        <td>333-444-7777</td>
-                        <td>ENT</td>
-                        <td>15</td>
-                        <td class="actions">
-                            <button class="btn-edit">Edit</button>
-                            <button class="btn-delete">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Riya</td>
-                        <td>16</td>
-                        <td>3423-232-987</td>
-                        <td>General Physician</td>
-                        <td>27</td>
-                        <td class="actions">
-                            <button class="btn-edit">Edit</button>
-                            <button class="btn-delete">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Paul</td>
-                        <td>12</td>
-                        <td>3423-132-987</td>
-                        <td>Ortho</td>
-                        <td>19</td>
-                        <td class="actions">
-                            <button class="btn-edit">Edit</button>
-                            <button class="btn-delete">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Manoj Kumar</td>
-                        <td>19</td>
-                        <td>333-444-7777</td>
-                        <td>Neuro Surgeon</td>
-                        <td>8</td>
-                        <td class="actions">
-                            <button class="btn-edit">Edit</button>
-                            <button class="btn-delete">Delete</button>
-                        </td>
-                    </tr>
+                    <c:forEach var="doctor" items="${doctorInfoList}">
+                        <tr>
+                            <td>${doctor.doctorID}</td>
+                            <td>${doctor.doctorFirstName} ${doctor.doctorLastName}</td>
+                            <td>${doctor.doctorExperience}</td>
+                            <td>${doctor.doctorPhoneNumber}</td>
+                            <td>${doctor.doctorSpecialization}</td>
+                            <td class="actions">
+                                <form action="${pageContext.request.contextPath}/admin-doctor-list" method="post" style="display:inline;">
+                                    <input type="hidden" name="action" value="editDoctor">
+                                    <input type="hidden" name="doctorID" value="${doctor.doctorID}">
+                                    <button type="submit" class="btn-edit">Edit</button>
+                                </form>
+                                <form action="${pageContext.request.contextPath}/admin-doctor-list" method="post" style="display:inline;">
+                                    <input type="hidden" name="action" value="deleteDoctor">
+                                    <input type="hidden" name="doctorID" value="${doctor.doctorID}">
+                                    <button type="submit" class="btn-delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>
-	</main>
+    </main>
 </body>
 </html>
