@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +19,11 @@
         </div>
 
         <div class="search-control">
-            <input type="text" placeholder="Search rooms...">
-        </div>
+                <form action="${pageContext.request.contextPath}/admin-room-list" method="get">
+                    <input type="text" name="search" placeholder="Search appointments...." value="${param.search}">
+                    <button type="submit"><img class="search-icon" src="${pageContext.request.contextPath}/resources/images/searchbar.png" alt="search bar"></button>
+                </form>
+            </div>
         <table>
             <thead>
                 <tr>
@@ -29,36 +33,13 @@
                 </tr>
             </thead>
             <tbody>
+            	<c:forEach var="room" items="${roomList }">
                 <tr>
-                    <td>1</td>
-                    <td>Sunshine Room</td>
-                    <td class="room-type">General Ward</td>
+                    <td>${room.roomID }</td>
+                    <td>${room.roomName }</td>
+                    <td class="room-type">${room.roomType }</td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Ocean View</td>
-                    <td class="room-type">Private</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Rainbow Room</td>
-                    <td class="room-type">Pediatric</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Comfort Suite</td>
-                    <td class="room-type">ICU</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Harmony Room</td>
-                    <td class="room-type">General Ward</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Executive Suite</td>
-                    <td class="room-type">VIP</td>
-                </tr>
+                </c:forEach>
             </tbody>
         </table>
     </div>
