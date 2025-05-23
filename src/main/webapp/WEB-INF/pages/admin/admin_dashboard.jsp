@@ -28,7 +28,7 @@
             <span class="stat-title">Appointments</span>
             <div class="stat-icon appointments-icon">📅</div>
           </div>
-          <div class="stat-value">509</div>
+          <div class="stat-value">${empty totalAppointment ? 0 : totalAppointment}</div>
         </div>
         
         <div class="stat-card doctors">
@@ -36,7 +36,7 @@
             <span class="stat-title">Doctors</span>
             <div class="stat-icon doctors-icon">👨‍⚕️</div>
           </div>
-          <div class="stat-value">60</div>
+          <div class="stat-value">${empty totalDoctor ? 0 : totalDoctor}</div>
         </div>
         
         <div class="stat-card patients">
@@ -44,7 +44,7 @@
             <span class="stat-title">Patients</span>
             <div class="stat-icon patients-icon">👥</div>
           </div>
-          <div class="stat-value">1k</div>
+          <div class="stat-value">${empty totalPatient ? 0 : totalPatient}</div>
         </div>
         
         <div class="stat-card revenue">
@@ -52,7 +52,7 @@
             <span class="stat-title">Total Income</span>
             <div class="stat-icon revenue-icon">💰</div>
           </div>
-          <div class="stat-value">$80k</div>
+          <div class="stat-value">Rs. ${empty totalIncome ? 0 : totalIncome}</div>
         </div>
       </div>
       
@@ -60,7 +60,7 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Recent Patients</h3>
-            <a href="#" class="card-link">View All</a>
+            <a href="${pageContext.request.contextPath}/admin-patient-list" class="card-link">View All</a>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -90,7 +90,6 @@
                     <td>${patient.municipality}, Ward ${patient.wardNo}</td>
                     <td>
                       <div class="action-btns">
-                        <button class="btn btn-edit">✏️</button>
                         <button class="btn btn-delete">🗑️</button>
                       </div>
                     </td>
@@ -105,70 +104,24 @@
          <div class="card">
           <div class="card-header">
             <h3 class="card-title">Doctors</h3>
-            <a href="#" class="card-link">View All</a>
+            <a href="${pageContext.request.contextPath}/admin-doctor-list" class="card-link">View All</a>
           </div>
           <div class="card-body">
             <ul class="doctor-list">
+            <c:forEach var="doctor" items="${doctorList}">
               <li class="doctor-item">
                 <div class="doctor-avatar">
-                  <img src= "${pageContext.request.contextPath}/resources/images/doctors/prashsihsihss.jpg" alt="Doctor Profile">
+                  <img src= "${pageContext.request.contextPath}/resources/images/doctors/${doctor.imagePath}" alt="Doctor Profile">
                 </div>
                 <div class="doctor-info">
-                  <div class="doctor-name">Dr. Brooklyn Simmons</div>
-                  <div class="doctor-specialty">Radiation</div>
+                  <div class="doctor-name">Dr. ${doctor.doctorFirstName} ${doctor.doctorLastName} </div>
+                  <div class="doctor-specialty">${doctor.doctorSpecialization}</div>
                 </div>
                 <div class="doctor-actions">
                   <button class="btn btn-icon">⋮</button>
                 </div>
               </li>
-              <li class="doctor-item">
-                <div class="doctor-avatar">
-                  <img src= "${pageContext.request.contextPath}/resources/images/doctors/prashsihsihss.jpg" alt="Doctor Profile">
-                </div>
-                <div class="doctor-info">
-                  <div class="doctor-name">Dr. Savannah Nguyen</div>
-                  <div class="doctor-specialty">Dialysis</div>
-                </div>
-                <div class="doctor-actions">
-                  <button class="btn btn-icon">⋮</button>
-                </div>
-              </li>
-              <li class="doctor-item">
-                <div class="doctor-avatar">
-                  <img src= "${pageContext.request.contextPath}/resources/images/doctors/prashsihsihss.jpg" alt="Doctor Profile">
-                </div>
-                <div class="doctor-info">
-                  <div class="doctor-name">Dr. Courtney Henry</div>
-                  <div class="doctor-specialty">Hormone</div>
-                </div>
-                <div class="doctor-actions">
-                  <button class="btn btn-icon">⋮</button>
-                </div>
-              </li>
-              <li class="doctor-item">
-                <div class="doctor-avatar">
-                  <img src= "${pageContext.request.contextPath}/resources/images/doctors/prashsihsihss.jpg" alt="Doctor Profile">
-                </div>
-                <div class="doctor-info">
-                  <div class="doctor-name">Dr. Kathryn Murphy</div>
-                  <div class="doctor-specialty">Radiation</div>
-                </div>
-                <div class="doctor-actions">
-                  <button class="btn btn-icon">⋮</button>
-                </div>
-              </li>
-              <li class="doctor-item">
-                <div class="doctor-avatar">
-                  <img src= "${pageContext.request.contextPath}/resources/images/doctors/prashsihsihss.jpg" alt="Doctor Profile">
-                </div>
-                <div class="doctor-info">
-                  <div class="doctor-name">Dr. John Doe</div>
-                  <div class="doctor-specialty">Cardiology</div>
-                </div>
-                <div class="doctor-actions">
-                  <button class="btn btn-icon">⋮</button>
-                </div>
-              </li>
+             </c:forEach>
             </ul>
           </div>
         </div>
@@ -177,7 +130,7 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Appointments</h3>
-          <a href="#" class="card-link">View All</a>
+          <a href="${pageContext.request.contextPath}/admin-appointment-list" class="card-link">View All</a>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -189,50 +142,24 @@
                   <th>Date and Time</th>
                   <th>Room</th>
                   <th>Appointment Status</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
+              <c:forEach var="userAppointment" items="${appointmentList}">
                 <tr>
-                  <td>Jahid Ahmad</td>
-                  <td>Dr. Brooklyn Simmons</td>
-                  <td>10 Feb 2025<br/>9:30-10:30</td>
-                  <td>Room 101<br/>(Radiation)</td>
-                  <td><div class="badge badge-success">Confirmed</div></td>
-                  <td><button class="btn btn-icon">⋮</button></td>
+                  <td>${userAppointment.user.firstName} ${userAppointment.user.lastName}</td>
+                  <td>Dr. ${userAppointment.appointment.doctor.doctorFirstName} ${userAppointment.appointment.doctor.doctorLastName}</td>
+                  <td>${userAppointment.appointment.appointmentDate} <br/>
+            			${userAppointment.appointment.appointmentStartTime} - ${userAppointment.appointment.appointmentEndTime}
+        		  </td>
+                  <td>${userAppointment.appointment.room.roomName} <br/> ${userAppointment.appointment.room.roomType}</td>
+                  <td>
+           			 <div class="badge ${userAppointment.appointment.appointmentStatus == 'Confirmed' ? 'badge-success' : 'badge-warning'}">
+                		${userAppointment.appointment.appointmentStatus}
+           			 </div>	
+       			  </td>
                 </tr>
-                <tr>
-                  <td>Rohim Mia</td>
-                  <td>Dr. Savannah Nguyen</td>
-                  <td>10 Feb 2025<br/>10:00-11:00</td>
-                  <td>Room 205<br/>(Dialysis)</td>
-                  <td><div class="badge badge-warning">Pending</div></td>
-                  <td><button class="btn btn-icon">⋮</button></td>
-                </tr>
-                <tr>
-                  <td>Kabir Uddin</td>
-                  <td>Dr. Courtney Henry</td>
-                  <td>10 Feb 2025<br/>11:30-12:30</td>
-                  <td>Room 303<br/>(Consultation)</td>
-                  <td><div class="badge badge-success">Confirmed</div></td>
-                  <td><button class="btn btn-icon">⋮</button></td>
-                </tr>
-                <tr>
-                  <td>Mira Singh</td>
-                  <td>Dr. Kathryn Murphy</td>
-                  <td>10 Feb 2025<br/>2:00-3:00</td>
-                  <td>Room 102<br/>(Physical)</td>
-                  <td><div class="badge badge-warning">Pending</div></td>
-                  <td><button class="btn btn-icon">⋮</button></td>
-                </tr>
-                <tr>
-                  <td>Marten Don</td>
-                  <td>Dr. Brooklyn Simmons</td>
-                  <td>10 Feb 2025<br/>3:30-4:30</td>
-                  <td>Room 101<br/>(Radiation)</td>
-                  <td><div class="badge badge-success">Confirmed</div></td>
-                  <td><button class="btn btn-icon">⋮</button></td>
-                </tr>
+              </c:forEach>
               </tbody>
             </table>
           </div>
