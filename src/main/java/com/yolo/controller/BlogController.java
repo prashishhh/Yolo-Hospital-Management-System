@@ -6,36 +6,41 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import com.yolo.service.BlogService;
 
 /**
- * Servlet implementation class Blog
+ * Servlet implementation class BlogController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/blog"})
+@WebServlet(asyncSupported = true, urlPatterns = { "/blog" })
 public class BlogController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+    private BlogService blogService;
+
     /**
-     * @see HttpServlet#HttpServlet()
+     * Constructor initializing the service
      */
     public BlogController() {
-        super();
-        // TODO Auto-generated constructor stub
+        this.blogService = new BlogService();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/pages/blog.jsp").forward(request,response);
-	}
+    /**
+     * Handles GET requests to display the blog list
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get the search query from the request
+        String searchQuery = request.getParameter("search");
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+        // Get blog posts and set as request attribute
+        request.setAttribute("blogPosts", blogService.getBlogPosts(searchQuery));
 
+        // Forward to the JSP
+        request.getRequestDispatcher("/WEB-INF/pages/blog.jsp").forward(request, response);
+    }
+
+    /**
+     * Handles POST requests by delegating to doGet
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }
