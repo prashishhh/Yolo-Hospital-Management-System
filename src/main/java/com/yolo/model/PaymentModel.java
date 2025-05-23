@@ -4,14 +4,14 @@ package com.yolo.model;
 public class PaymentModel {
 	private int paymentID;
 	private float paymentAmount;
-	private boolean paymentStatus;
+	private String paymentStatus;
 	
 	
 	public PaymentModel() {
 	}
 
 
-	public PaymentModel(int paymentID, float paymentAmount, boolean paymentStatus) {
+	public PaymentModel(int paymentID, float paymentAmount, String paymentStatus) {
 		super();
 		this.paymentID = paymentID;
 		this.paymentAmount = paymentAmount;
@@ -19,7 +19,7 @@ public class PaymentModel {
 	}
 
 
-	public PaymentModel(float paymentAmount, boolean paymentStatus) {
+	public PaymentModel(float paymentAmount, String paymentStatus) {
 		super();
 		this.paymentAmount = paymentAmount;
 		this.paymentStatus = paymentStatus;
@@ -46,12 +46,12 @@ public class PaymentModel {
 	}
 
 
-	public boolean isPaymentStatus() {
+	public String isPaymentStatus() {
 		return paymentStatus;
 	}
 
 
-	public void setPaymentStatus(boolean paymentStatus) {
+	public void setPaymentStatus(String paymentStatus) {
 		this.paymentStatus = paymentStatus;
 	}
 	

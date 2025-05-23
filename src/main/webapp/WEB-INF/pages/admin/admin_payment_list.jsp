@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +17,12 @@
             <h2 class="list-header">Payments List</h2>
         </div>
 
+        <!-- Search form -->
         <div class="search-control">
-            <input type="text" placeholder="Search payments...">
+            <form action="${pageContext.request.contextPath}/admin-payment-list" method="get">
+                <input type="text" name="search" placeholder="Search payments..." value="${param.search}">
+                <button type="submit"><img class="search-icon" src="${pageContext.request.contextPath}/resources/images/searchbar.png" alt="search bar"></button>
+            </form>
         </div>
         <table>
             <thead>
@@ -29,45 +34,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>Aarati Sharma</td>
-                    <td class="amount">₹ 2,500.00</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>Bijay Thapa</td>
-                    <td class="amount">₹ 3,200.00</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>Deepak Poudel</td>
-                    <td class="amount">₹ 4,500.00</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>Prakash Gurung</td>
-                    <td class="amount">₹ 1,800.00</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>Manisha Rai</td>
-                    <td class="amount">₹ 3,700.00</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>7</td>
-                    <td>Ram Bahadur KC</td>
-                    <td class="amount">₹ 2,100.00</td>
-                </tr>
+                <c:set var="totalAmount" value="0" />
+                <c:forEach var="userAppointment" items="${paymentDetailsList}">
+                    <tr>
+                        <td>${userAppointment.appointment.payment.paymentID}</td>
+                        <td>${userAppointment.appointment.appointmentID}</td>
+                        <td>${userAppointment.user.firstName} ${userAppointment.user.lastName}</td>
+                        <td>Rs.${userAppointment.appointment.payment.paymentAmount}</td>
+                        <c:set var="totalAmount" value="${totalAmount + userAppointment.appointment.payment.paymentAmount}" />
+                    </tr>
+                </c:forEach>
                 <tr>
                     <td colspan="3" style="text-align: right; font-weight: bold;">Total Amount:</td>
-                    <td class="amount" style="font-weight: bold;">₹ 17,800.00</td>
+                    <td class="amount" style="font-weight: bold;">Rs.${totalAmount}</td>
                 </tr>
             </tbody>
         </table>

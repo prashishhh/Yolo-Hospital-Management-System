@@ -7,35 +7,42 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.yolo.service.admin.AdminPaymentListService;
+
 /**
  * Servlet implementation class AdminPaymentListController
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/admin-payment-list" })
 public class AdminPaymentListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private AdminPaymentListService adminPaymentListService;
        
     /**
-     * @see HttpServlet#HttpServlet()
+     * Constructor initializing the service
      */
     public AdminPaymentListController() {
-        super();
-        // TODO Auto-generated constructor stub
+        this.adminPaymentListService = new AdminPaymentListService();
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Handles GET requests to display the payment list
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// Get the search query from the request
+        String searchQuery = request.getParameter("search");
+        
+        // Get payment details and set as request attribute
+        request.setAttribute("paymentDetailsList", adminPaymentListService.getPaymentDetails(searchQuery));
+		
+		// Forward to the JSP
 		request.getRequestDispatcher("/WEB-INF/pages/admin/admin_payment_list.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Handles POST requests by delegating to doGet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }
