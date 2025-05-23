@@ -6,6 +6,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.yolo.service.patient.PatientAppointmentService;
+import com.yolo.util.SessionUtil;
+
 /**
  * PatientAppointmentController is responsible for handling patient appointment requests.
  * It manages the display and processing of the patient appointment page.
@@ -15,13 +18,13 @@ import java.io.IOException;
 public class PatientAppointmentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private PatientAppointmentService patientAppointmentService;
     /**
      * Constructor for PatientAppointmentController.
      * Initializes the servlet by calling the parent constructor.
      */
     public PatientAppointmentController() {
-        super();
-        // No additional initialization required
+    	this.patientAppointmentService = new PatientAppointmentService();
     }
 
 	/**
@@ -34,6 +37,14 @@ public class PatientAppointmentController extends HttpServlet {
 	 * @throws IOException      if an I/O error occurs
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Integer userID = (Integer) SessionUtil.getAttribute(request, "userID");
+		// Get the search query from the request
+        String searchQuery = request.getParameter("search");
+        
+        // Get appointment details for the logged-in patient
+        request.setAttribute("appointmentDetailsList", patientAppointmentService.getPatientAppointmentDetails(userID, searchQuery));
+        
 		request.getRequestDispatcher("/WEB-INF/pages/patient/patient_appointment.jsp").forward(request, response);
 	}
 
