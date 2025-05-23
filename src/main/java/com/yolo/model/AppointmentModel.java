@@ -50,6 +50,15 @@ public class AppointmentModel {
 		this.payment = payment;
 		this.treatment = treatment;
 	}
+	
+	public AppointmentModel(int appointmentID, LocalDate appointmentDate, LocalTime appointmentStartTime, LocalTime appointmentEndTime, int appointmentFee) {
+	    this.appointmentID = appointmentID;
+	    this.appointmentDate = appointmentDate;
+	    this.appointmentStartTime = appointmentStartTime;
+	    this.appointmentEndTime = appointmentEndTime;
+	    this.appointmentFee = appointmentFee;
+	}
+
 
 	public int getAppointmentID() {
 		return appointmentID;
