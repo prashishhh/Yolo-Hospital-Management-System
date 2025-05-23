@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,39 +17,25 @@ href="${pageContext.request.contextPath}/css/patient_payment_history.css" />
         <h2 class="list-header">Payment History</h2>
     </div>
     
-    <div class="search-control">
-        <input type="text" placeholder="Search payments...">
-    </div>
-    
     <table>
         <thead>
-            <tr>
-                <th>Invoice ID</th>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>01/10/2023</td>
-                <td>Consultation with Dr. Girish Raj Thapa</td>
-                <td>$150</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>15/03/2022</td>
-                <td>Appendectomy Surgery</td>
-                <td>$2000</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>25/03/2025</td>
-                <td>Consultation with Dr. Shiwans Shah</td>
-                <td>$100</td>
-            </tr>
-        </tbody>
+                <tr>
+                    <th>Invoice ID</th>
+                    <th>Appointment ID</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="userPayment" items="${paymentDetailsList}">
+                    <tr>
+                        <td>${userPayment.appointment.payment.paymentID}</td>
+                        <td>${userPayment.appointment.appointmentID}</td>
+                        <td>${userPayment.appointment.appointmentDate}</td>
+                        <td>Rs.${userPayment.appointment.payment.paymentAmount}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
     </table>
 </div>
 </body>

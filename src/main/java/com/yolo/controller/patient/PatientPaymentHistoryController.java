@@ -6,6 +6,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.yolo.service.patient.PatientPaymentHistoryService;
+import com.yolo.util.SessionUtil;
+
 /**
  * PatientPaymentHistoryController is responsible for handling patient payment history requests.
  * It manages the display and retrieval of a patient's past payment transactions, invoices,
@@ -14,14 +17,15 @@ import java.io.IOException;
 @WebServlet(asyncSupported = true, urlPatterns = { "/patient-payment-history"})
 public class PatientPaymentHistoryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private PatientPaymentHistoryService patientPaymentHistoryService;
        
     /**
      * Constructor for PatientPaymentHistoryController.
      * Initializes the servlet by calling the parent constructor.
      */
     public PatientPaymentHistoryController() {
-        super();
-        // No additional initialization required
+    	this.patientPaymentHistoryService = new PatientPaymentHistoryService();
     }
 
 	/**
@@ -38,8 +42,16 @@ public class PatientPaymentHistoryController extends HttpServlet {
 	 * @throws IOException      if an I/O error occurs
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Forward to the payment history view
-		// Future enhancement: Add payment history data to request attributes
+
+		
+		Integer userID = (Integer) SessionUtil.getAttribute(request, "userID");
+		
+		// Get the search query from the request
+        String searchQuery = request.getParameter("search");
+        
+        // Get payment details for the logged-in patient
+        request.setAttribute("paymentDetailsList", patientPaymentHistoryService.getPatientPaymentDetails(userID, searchQuery));
+        
 		request.getRequestDispatcher("/WEB-INF/pages/patient/patient_payment_history.jsp").forward(request, response);
 	}
 
