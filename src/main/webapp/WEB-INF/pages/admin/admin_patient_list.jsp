@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,91 +19,43 @@
             <h2 class="list-header">Patients List</h2>
         </div>
         
-        <div class="search-control">
-            <input type="text" placeholder="Search patients...">
-        </div>
+		<!-- Search form -->
+            <div class="search-control">
+                <form action="${pageContext.request.contextPath}/admin-patient-list" method="get">
+                    <input type="text" name="search" placeholder="Search patients..." value="${param.search}">
+                    <button type="submit"><img class="search-icon" src="${pageContext.request.contextPath}/resources/images/searchbar.png" alt="search bar"></button>
+                </form>
+            </div>
         <table>
             <thead>
                 <tr>
                     <th>Patient ID</th>
                     <th>Patient Name</th>
                     <th>Age</th>
+                    <th>Gender</th>
                     <th>Phone</th>
-                    <th>Last Visit</th>
+                    <th>Address</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
+            	<c:forEach var="patient" items="${patientInfoList}">
                 <tr>
-                    <td>1</td>
-                    <td>Aarav Sharma</td>
-                    <td>34</td>
-                    <td>555-123-4567</td>
-                    <td><span class="badge">April 10, 2025</span></td>
+                    <td>${patient.userId}</td>
+                    <td>${patient.firstName} ${patient.lastName}</td>
+                    <td>${patient.age }</td>
+                    <td>${patient.gender}</td>
+                    <td>${patient.phoneNumber}</td>
+                    <td>${patient.municipality}, Ward ${patient.wardNo}</td>
                     <td class="actions">
-                        <button class="btn-delete">Delete</button>
+                    	<form action="${pageContext.request.contextPath}/admin-patient-list" method="post" style="display:inline">
+                    		<input type="hidden" name="action" value="deletePatient">
+                    		<input type="hidden" name="userID" value="${patient.userId}">
+                        	<button class="btn-delete">Delete</button>
+                        </form>
                     </td>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Sarita Adhikari</td>
-                    <td>45</td>
-                    <td>555-234-5678</td>
-                    <td><span class="badge">April 8, 2025</span></td>
-                    <td class="actions">
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Bijay Thapa</td>
-                    <td>28</td>
-                    <td>555-345-6789</td>
-                    <td><span class="badge">March 25, 2025</span></td>
-                    <td class="actions">
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Priya Shrestha</td>
-                    <td>62</td>
-                    <td>555-456-7890</td>
-                    <td><span class="badge">April 12, 2025</span></td>
-                    <td class="actions">
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Dipesh Gurung</td>
-                    <td>19</td>
-                    <td>555-567-8901</td>
-                    <td><span class="badge">March 18, 2025</span></td>
-                    <td class="actions">
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Sunita Tamang</td>
-                    <td>53</td>
-                    <td>555-678-9012</td>
-                    <td><span class="badge">February 5, 2025</span></td>
-                    <td class="actions">
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Rajesh Poudel</td>
-                    <td>41</td>
-                    <td>555-789-0123</td>
-                    <td><span class="badge">January 22, 2025</span></td>
-                    <td class="actions">
-                        <button class="btn-delete">Delete</button>
-                    </td>
-                </tr>
+                </c:forEach>
             </tbody>
         </table>
     </div>

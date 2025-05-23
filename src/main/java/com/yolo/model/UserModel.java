@@ -3,9 +3,6 @@ package com.yolo.model;
 import java.time.LocalDate;
 import java.time.Period;
 
-/**
- * Represents a user in the system with relevant personal and account details.
- */
 public class UserModel {
 	
 	private int userId;
@@ -24,32 +21,10 @@ public class UserModel {
 	private String userRole;
 	private String imagePath;
 	
-	/**
-     * Default constructor.
-     */
 	public UserModel() {
 		
 	}
 
-	/**
-     * Full parameterized constructor including userId.
-     *
-     * @param userId        Unique user identifier
-     * @param firstName     User's first name
-     * @param lastName      User's last name
-     * @param dateOfBirth   User's date of birth
-     * @param gender        Gender
-     * @param phoneNumber   Phone number
-     * @param email         Email address
-     * @param city          City
-     * @param district      District
-     * @param municipality  Municipality
-     * @param wardNo        Ward number
-     * @param userName      Username for login
-     * @param password      Password for login
-     * @param userRole      User role (e.g., Admin, Patient)
-     * @param imagePath     Path to profile image
-     */
 	public UserModel(int userId, String firstName, String lastName, LocalDate dateOfBirth, String gender,
 			String phoneNumber, String email, String city, String district, String municipality, String wardNo,
 			String userName, String password, String userRole, String imagePath) {
@@ -72,10 +47,7 @@ public class UserModel {
 	}
 	
 	
-	
-	/**
-     * Constructor without userId (used for user registration query in sql).
-     */
+
 	public UserModel(String firstName, String lastName, LocalDate dateOfBirth, String gender, String phoneNumber,
 			String email, String city, String district, String municipality, String wardNo, String userName,
 			String password, String userRole, String imagePath) {
@@ -97,9 +69,7 @@ public class UserModel {
 	}
 	
 	
-	/**
-     * Partial constructor for retrieving information for admin dashboard 
-     */
+
 	public UserModel(String firstName, String lastName, String gender, LocalDate dateOfBirth, String municipality,
 			String wardNo, String imagePath) {
 		super();
@@ -115,6 +85,50 @@ public class UserModel {
 	public UserModel(String userName, String password) {
 		this.userName = userName;
 		this.password = password;
+	}
+
+	
+	public UserModel(int userId, String firstName, String lastName, LocalDate dateOfBirth, String gender,
+			String phoneNumber, String municipality, String wardNo) {
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.phoneNumber = phoneNumber;
+		this.municipality = municipality;
+		this.wardNo = wardNo;
+	}
+
+	
+	
+	public UserModel(int userId, String firstName, String lastName, LocalDate dateOfBirth, String gender,
+			String phoneNumber, String email, String city, String district, String municipality, String wardNo,
+			String userName, String imagePath) {
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.city = city;
+		this.district = district;
+		this.municipality = municipality;
+		this.wardNo = wardNo;
+		this.userName = userName;
+		this.imagePath = imagePath;
+	}
+
+	
+	
+	public UserModel(int userId, String firstName, String lastName) {
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 
 	public int getUserId() {
