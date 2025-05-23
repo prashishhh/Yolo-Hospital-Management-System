@@ -6,11 +6,4 @@
     <url-pattern>/css/*</url-pattern>
     <url-pattern>/resources/*</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>RegisterController</display-name>
-    <servlet-name>RegisterController</servlet-name>
-    <servlet-class>com.yolo.controller.RegisterController</servlet-class>
-  </servlet>
-  
 </web-app>

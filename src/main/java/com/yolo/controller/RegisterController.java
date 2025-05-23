@@ -61,7 +61,8 @@ public class RegisterController extends HttpServlet {
 	 * @throws ServletException if a servlet-specific error occurs
 	 * @throws IOException      if an I/O error occurs
 	 */
-    @Override
+    @SuppressWarnings("unused")
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	try {
@@ -101,7 +102,8 @@ public class RegisterController extends HttpServlet {
 	}
     
     /**
-     * Validates the registration form input. Checks for empty fields, validates data formats, ensures password match and age restrictions, and verifies the uploaded image file.
+     * Validates the registration form input. Checks for empty fields, validates data formats, 
+     * ensures password match and age restrictions, and verifies the uploaded image file.
      *
      * @param request the HttpServletRequest object containing form data
      * @return null if all inputs are valid; otherwise, returns the validation error message
